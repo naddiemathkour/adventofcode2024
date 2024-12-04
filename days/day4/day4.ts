@@ -2,15 +2,8 @@ const fs = require('fs');
 
 function part_one(hs: string[]) {
   // Given: A block of letters /[XMAS]/+ that represents a word search
-  //        The only word that needs to be found is "MAS". This word
-  //        can only exist diagonally and must have an accomponying "MAS" that uses the same "A".
-  //        This means that you are looking for:
-  //
-  //                              "M . M"
-  //                              ". A ."
-  //                              "S . S"
-  //
-  //        Note: "MAS" may be re-written as "SAM" for either diagonal direction.
+  //        The only word that needs to be found is "XMAS". This word
+  //        can be writing left to right, backwards, vertically, horizontally, and diagonally
   //
   // Task: Parse out any match for the requirements of XMAS
   // Return: The total count of matches for the requirements of XMAS
@@ -77,8 +70,15 @@ function part_one(hs: string[]) {
 
 function part_two(hs: string[]) {
   // Given: A block of letters /[XMAS]/+ that represents a word search
-  //        The only word that needs to be found is "XMAS". This word
-  //        can be writing left to right, backwards, vertically, horizontally, and diagonally
+  //        The only word that needs to be found is "MAS". This word
+  //        can only exist diagonally and must have an accomponying "MAS" that uses the same "A".
+  //        This means that you are looking for:
+  //
+  //                              "M . M"
+  //                              ". A ."
+  //                              "S . S"
+  //
+  //        Note: "MAS" may be re-written as "SAM" for either diagonal direction.
   //
   // Task: Parse out any match for the requirements of XMAS
   // Return: The total count of matches for the requirements of XMAS
