@@ -45,7 +45,7 @@ function part_one(hs: string[]) {
 
     // Diagonal down-left and up-right
     temp = "";
-    for (let r = row, c = col; r < row + 4 && c > col - 4; r++, c--) temp += hs[r]?.[c] || '.';
+    for (let r = row, c = col; temp.length < 4; r++, c--) temp += hs[r]?.[c] || '.';
     test(temp);
 
     temp = "";
