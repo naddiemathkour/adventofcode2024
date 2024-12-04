@@ -11,7 +11,6 @@ function part_one(hs: string[]) {
   const needles = ["XMAS", "SAMX"];
   let count = 0;
   const test = (str: string) => {
-    console.log(str, count)
     if (needles.includes(str)) count++;
   }
 
@@ -86,7 +85,6 @@ function part_two(hs: string[]) {
   const needles = ["MAS", "SAM"];
   let count = 0;
   const test = (str1: string, str2: string) => {
-    console.log(str1, str2, count)
     if (needles.includes(str1) && needles.includes(str2)) count++;
   }
 
@@ -119,7 +117,7 @@ function part_two(hs: string[]) {
 function main() {
   const input = fs.readFileSync('input', 'utf-8').split('\n')
   
-  //console.log('Part one:', part_one(input));
+  console.log('Part one:', part_one(input));
   console.log('Part two:', part_two(input));
 }
 
