@@ -162,7 +162,6 @@ function part_two(input: string[]): number {
     if (find_cycle(room, start)) res++;
     str[col] = '.';
     room[row] = str.join('');
-
   }
 
   return res;
