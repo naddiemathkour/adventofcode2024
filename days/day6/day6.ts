@@ -121,7 +121,7 @@ function find_cycle(room: string[], start: number[]): boolean {
     trace.set(index, (trace.get(index) || 0) + 1);
   }
 
-  return trace.get(String(position))! >= 5;
+  return trace.get(String(position))! >= 3;
 }
 
 function part_two(input: string[]): number {
