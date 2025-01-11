@@ -64,39 +64,46 @@ function part_two(disk: string): number {
   //
   // Return:  The checksum value of the disk's memory.
 
-  let defrag = [];
+  let diskmem = [];
   let idx = 0;
   for (let i = 0; i < disk.length; i += 2) {
-    defrag.push(new Array(Number(disk[i])).fill(String(idx++)));
+    diskmem.push(new Array(Number(disk[i])).fill(String(idx++)));
     if (Number(disk[i + 1]) > 0)
-      defrag.push(new Array(Number(disk[i + 1])).fill('.'))
+      diskmem.push(new Array(Number(disk[i + 1])).fill('.'));
   }
 
-  for (let r = defrag.length - 1; r > 0; r--) {
-    if (defrag[r][0] === '.') continue;
+  for (let r = diskmem.length - 1; r > 0; r--) {
+    if (diskmem[r][0] === '.') continue;
     for (let l = 0; l < r; l++) {
-      if (defrag[l][0] !== '.' || defrag[l].length < defrag[r].length) continue;
-      else {
-        const temp = defrag[l].slice(defrag[r].length);
-        defrag[l] = [...defrag[r]];
-        defrag[r].fill('.')
-        if (temp.length > 0) {
-          defrag.splice(l + 1, 0, temp)
+      const diff = diskmem[l].length - diskmem[r].length;
+      if (diff < 0 || diskmem[l][0] !== '.')
+        continue;
+
+      const temp: string[] = [...diskmem[r]];
+      diskmem[r] = new Array(diskmem[r].length).fill('.');
+      diskmem[l] = temp;
+
+      if (diff > 0) {
+        diskmem.splice(++l, 0, new Array(diff).fill('.'));
+        l++
+        while (diskmem[l][0] === '.' && diskmem[l - 1]) {
+          diskmem[l - 1].push(...diskmem[l]);
+          l--;
         }
-        break;
       }
     }
   }
 
+  let res = 0;
   idx = 0;
-  let checksum = 0;
-  for (const block of defrag) {
+  for (const block of diskmem) {
     for (const cell of block) {
-      if (cell !== '.') checksum += idx * cell;
+      res += idx * (Number(cell) || 0);
       idx++;
     }
   }
-  return checksum; //6470544599471 low 6417720604818 high
+
+  return res; //90952373146 117066728626 6470544599471 low 6470546665072 high 
 }
 
 function main() {
